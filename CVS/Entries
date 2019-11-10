@@ -1,6 +1,5 @@
 /Beos.txt/1.1.1.1/Wed Jun  7 21:09:23 2000//
 /Books.txt/1.1.1.1/Wed Jun  7 21:09:23 2000//
-/Changes.txt/1.105/Mon Oct 14 18:16:28 2019//
 /Ibmvac.txt/1.2/Fri Mar 29 12:53:35 2002//
 /Install.txt/1.6/Fri Mar  8 15:23:26 2019//
 /Intro.txt/1.6/Mon Mar 11 17:39:13 2019//
@@ -20,8 +19,6 @@
 /browse.h/1.2/Sun Dec  2 12:03:25 2001//
 /config.h.in/1.2/Mon Mar 11 17:49:42 2019//
 /config.vms/1.1.1.1/Wed Jun  7 21:09:23 2000//
-/configure/1.76/Mon Oct 14 18:16:28 2019//
-/configure.in/1.75/Mon Oct 14 18:16:28 2019//
 /ctags.awk/1.1.1.1/Wed Jun  7 21:09:23 2000//
 /indent-patch/1.2/Fri Oct 23 19:36:41 2009//
 /manual.html/1.5/Mon Mar 11 17:29:36 2019//
@@ -38,3 +35,6 @@ D/src////
 D/util////
 D/words////
 D/xstr////
+/Changes.txt/1.107/Sun Nov 10 13:55:13 2019//
+/configure/1.77/Sun Nov 10 13:58:02 2019//
+/configure.in/1.76/Sun Nov 10 13:58:30 2019//
