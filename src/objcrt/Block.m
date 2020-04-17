@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 1997,98,2000,03,14,18.  All Rights Reserved.
- * $Id: Block.m,v 1.8 2018/09/07 06:48:59 stes Exp $
+ * Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
+ * $Id: Block.m,v 1.9 2020/04/16 19:15:42 stes Exp $
  */
 
 /*

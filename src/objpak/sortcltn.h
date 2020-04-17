@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,98,2003.  All Rights Reserved.
- * $Id: sortcltn.h,v 1.5 2009/10/23 19:36:44 stes Exp $
+ * $Id: sortcltn.h,v 1.6 2020/04/16 19:16:08 stes Exp $
  */
 
 /*

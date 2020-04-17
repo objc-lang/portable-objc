@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,98.  All Rights Reserved.
- * $Id: dictnary.m,v 1.4 2009/10/23 19:36:43 stes Exp $
+ * $Id: dictnary.m,v 1.5 2020/04/16 19:16:07 stes Exp $
  */
 
 /*

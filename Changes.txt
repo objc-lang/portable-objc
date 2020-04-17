@@ -3,6 +3,15 @@
 
 	* update objc.spec file
 
+	* fix a cast (void*)0 to (IMP)0 which was generated in the case
+	  of a block with numheapvarblocks == 0, ie. without heap promoted
+	  variables from the surrounding scope
+	  this generated a (harmless) compile warning with SunPro cc
+
+	* add a #define OBJCRT_MALLOC_IMPCACHE in objcrt
+	  that allows us to build debug libraries for use with DBX 
+	  check -access and check -memuse runtime checking and reports
+
 3.3.17  * OpenIndiana Hipster change for gcc 9.2: in -m32 case need __float128
 
 3.3.16  * Solaris change : objc uses /usr/lib/amd64 when compiling with -m64

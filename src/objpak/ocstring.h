@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,98,99,2003,09,14.  All Rights Reserved.
- * $Id: ocstring.h,v 1.5 2014/03/04 09:02:28 stes Exp $
+ * $Id: ocstring.h,v 1.6 2020/04/16 19:16:07 stes Exp $
  */
 
 /*

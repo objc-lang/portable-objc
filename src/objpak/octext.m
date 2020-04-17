@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,98,99,2003.  All Rights Reserved.
- * $Id: octext.m,v 1.3 2009/10/23 19:36:44 stes Exp $
+ * $Id: octext.m,v 1.4 2020/04/16 19:16:08 stes Exp $
  */
 
 /*

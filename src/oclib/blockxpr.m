@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1998 David Stes.
+ * Copyright (c) 1998,2020 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: blockxpr.m,v 1.1.1.1 2000/06/07 21:09:25 stes Exp $
+ * $Id: blockxpr.m,v 1.2 2020/04/16 19:16:12 stes Exp $
  */
 
 #include "config.h"
@@ -311,7 +311,7 @@
   if (numheapvarblocks) {
     gf("%s,(IMP)%s);\n", blkdataname, blkdtorname);
   } else {
-    gs("(void*)0,(void*)0);\n");
+    gs("(void*)0,(IMP)0);\n");
   }
   gs("}\n");
   return self;

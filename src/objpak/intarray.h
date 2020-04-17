@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1998.  All Rights Reserved.
- * $Id: intarray.h,v 1.3 2009/10/23 19:36:43 stes Exp $
+ * $Id: intarray.h,v 1.4 2020/04/16 19:16:07 stes Exp $
  */
 
 /*

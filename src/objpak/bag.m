@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,98.  All Rights Reserved.
- * $Id: bag.m,v 1.3 2001/03/14 20:01:09 stes Exp $
+ * $Id: bag.m,v 1.4 2020/04/16 19:16:07 stes Exp $
  */
 
 /*

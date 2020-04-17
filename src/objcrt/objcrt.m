@@ -1,7 +1,7 @@
 
 /*
- * Portable Object Compiler (c) 1997,98,99,00,01,04,14,18. All Rights Reserved.
- * $Id: objcrt.m,v 1.10 2018/09/07 06:49:00 stes Exp $
+ * Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
+ * $Id: objcrt.m,v 1.12 2020/04/17 18:54:55 stes Exp $
  */
 
 /*
@@ -137,6 +137,10 @@ nstsize (id aClass)
 
 static PHASH *hashList;
 static int nHashLists;
+
+#ifdef OBJCRT_MALLOC_IMPCACHE
+static void mallocImpCache (void);
+#endif
 
 #if 0
 static BOOL 
@@ -776,6 +780,11 @@ hashInit ()
 
   for (i = 0; i < nHashLists; i++)
     hashList [i] = 0;
+
+  /* traditionally the IMP,SEL and clsCache are statically allocated */
+#ifdef OBJCRT_MALLOC_IMPCACHE
+  mallocImpCache ();
+#endif
 }
 
 static PHASH 
@@ -1665,9 +1674,33 @@ _nilHandler (id self, SEL sel)
 
 #define	CACHESIZE 1031		/* a prime number */
 
+#ifdef OBJCRT_MALLOC_IMPCACHE
+static id *clsCache;
+static SEL *selCache;
+static IMP *impCache;
+
+static void 
+mallocImpCache (void)
+{
+  int i = 0;
+
+  clsCache = (id *) OC_Malloc (CACHESIZE * sizeof (id));
+  selCache = (SEL *) OC_Malloc (CACHESIZE * sizeof (SEL));
+  impCache = (IMP *) OC_Malloc (CACHESIZE * sizeof (IMP));
+
+  for (i = 0; i < CACHESIZE; i++)
+    {
+      clsCache [i] = nil;
+      selCache [i] = (SEL) 0;
+      impCache [i] = (IMP) 0;
+    }
+}
+#else
+/* traditional case of statically allocated caches */
 static id clsCache [CACHESIZE];
 static SEL selCache [CACHESIZE];
 static IMP impCache [CACHESIZE];
+#endif
 
 static void 
 flushCache (void)

@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,98.  All Rights Reserved.
- * $Id: sequence.h,v 1.2 2000/11/09 22:55:16 stes Exp $
+ * $Id: sequence.h,v 1.3 2020/04/16 19:16:08 stes Exp $
  */
 
 /*
