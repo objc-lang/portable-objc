@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
- * $Id: objcrt.m,v 1.12 2020/04/17 18:54:55 stes Exp $
+ * $Id: objcrt.m,v 1.13 2020/04/18 17:50:55 stes Exp $
  */
 
 /*
@@ -523,10 +523,11 @@ typedef struct _msgframe
   }
  *msgframe;
 
+/* code to avoid most obvious false selectors */
 #ifdef m68k
 #define ispointer(addr) (((unsigned)addr&0x1)==0)
 #else
-#define ispointer(addr) 1	/* (((unsigned)addr&0x1)==0) */
+#define ispointer(addr) (addr != NULL)
 #endif
 
 #define instack(addr) (((unsigned)(addr) & 0xfff00000) != 0)
@@ -586,7 +587,7 @@ prnstack (FILE * firstArg)
   for (pf = f->prev; isstackframe (pf) && nsels < PRNSTKMAX; f = pf, pf = pf->prev)
     {
       SEL s = f->argfrm.cmd;
-      if (isminmaxsel (s) && ispointer (s) && selUid (s) != NULL)
+      if (ispointer (s) && selUid (s) != NULL)
 	sels [nsels++] = s;
     }
 

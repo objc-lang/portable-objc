@@ -1,4 +1,8 @@
 
+3.3.19  * fix printstack code of selectors in Solaris Intel case (-error:)
+	  this is the optional (non-essential) stack tracing code on error:
+	  the default is to print a message that a debugger can be used
+
 3.3.18  * removed xstr sources
 
 	* update objc.spec file
