@@ -1,5 +1,5 @@
 #! /bin/sh
-# Portable Object Compiler (c) 1997,98,2004,16,19.  All Rights Reserved.
+# Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
 # Driver Script (@NAME@)
 #
 # $Id: objc.in,v 1.16 2019/10/14 18:16:31 stes Exp $
