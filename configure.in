@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-2.x.x configure script
-dnl $Id: configure.in,v 1.77 2020/04/18 17:50:44 stes Exp $
+dnl $Id: configure.in,v 1.78 2020/05/10 10:26:43 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -10,6 +10,9 @@ AC_INIT()
 dnl variable $OBJCDIR/lib or $OBJCDIR/lib64
 dnl this supports the Linux platforms (Red Hat/SuSE) that insist on lib64
 AC_ARG_VAR(LIB64NAME,name relative to OBJCDIR)
+
+dnl the following sets 'srcdir' check that it finds unique block98.html file
+AC_CONFIG_SRCDIR(block98.html)
 
 dnl normally we check for _objcInit() (to see if it's not in the syslibs)
 dnl if it is, we should be using some other prefixed name (oc_objcInit)
@@ -725,17 +728,17 @@ echo "$CC $t1 $t2 -o $e1" >&5
 echo "$CC $t2 $t1 -o $e2" >&5
 ($CC $t2 $t1 -o $e2) 2>&5 1>&5
 
-if test -x $e1 -a -x $e2
+if test -x ./$e1 -a -x ./$e2
 then
   echo -n "check whether $e1 returns '7'" >&5
-  if $srcdir/$e1 != 7
+  if ./$e1 != 7
   then
     echo " (no)" >&5
     ac_cv_postlink=yes;
   else
     echo " (yes)" >&5
     echo -n "check whether $e2 returns '7'" >&5
-    if $srcdir/$e2 != 7
+    if ./$e2 != 7
     then
      echo " (no)" >&5
      ac_cv_postlink=yes
@@ -745,6 +748,7 @@ then
     fi
   fi
 else
+  AC_MSG_ERROR(postlink test failed: $e1 or $e2 compile test failed)
   ac_cv_postlink=yes;
 fi
 rm -rf $ac_clean_files

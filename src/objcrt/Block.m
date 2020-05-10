@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
- * $Id: Block.m,v 1.9 2020/04/16 19:15:42 stes Exp $
+ * $Id: Block.m,v 1.10 2020/05/10 11:48:44 stes Exp $
  */
 
 /*
@@ -56,18 +56,14 @@ id EXPORT newBlock (int n, IMP f, void *d, IMP c)
 }
 
 /*
- * Might be nice to have a panel here, on the Macintosh
- * (otherwise the app just disappears and you have to look for 
- * a file "stderr" which contains (somewhere) the error message
- *
+ * Since objc-3.3.19 we do not print a message backtrace
+ * code which was #ifdef'ed out anyway
+ * Following function just prints the "msg" argument on stderr.
  */
 
 static id 
 err_fun (id thisBlock, void **data, id msg, id rcv)
 {
-#ifdef __PORTABLE_OBJC__
-  prnstack (stderr);
-#endif
   if (rcv)
     fprintf (stderr, "%s: ", [rcv name]);
   if (msg)

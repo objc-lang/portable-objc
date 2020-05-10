@@ -1,7 +1,9 @@
 
-3.3.19  * fix printstack code of selectors in Solaris Intel case (-error:)
-	  this is the optional (non-essential) stack tracing code on error:
-	  the default is to print a message that a debugger can be used
+3.3.19  * cleanup the printstack code in error:
+
+	* set AC_CONFIG_SRCDIR(block98.html) in configure for autoconf 2.68
+
+	* fix postlink test in configure script not to use srcdir,
 
 3.3.18  * removed xstr sources
 

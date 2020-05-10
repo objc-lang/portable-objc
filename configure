@@ -562,6 +562,7 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 PACKAGE_URL=
 
+ac_unique_file="block98.html"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>
@@ -2234,6 +2235,8 @@ ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
 
 
 
@@ -5402,17 +5405,17 @@ echo "$CC $t1 $t2 -o $e1" >&5
 echo "$CC $t2 $t1 -o $e2" >&5
 ($CC $t2 $t1 -o $e2) 2>&5 1>&5
 
-if test -x $e1 -a -x $e2
+if test -x ./$e1 -a -x ./$e2
 then
   echo -n "check whether $e1 returns '7'" >&5
-  if $srcdir/$e1 != 7
+  if ./$e1 != 7
   then
     echo " (no)" >&5
     ac_cv_postlink=yes;
   else
     echo " (yes)" >&5
     echo -n "check whether $e2 returns '7'" >&5
-    if $srcdir/$e2 != 7
+    if ./$e2 != 7
     then
      echo " (no)" >&5
      ac_cv_postlink=yes
@@ -5422,6 +5425,7 @@ then
     fi
   fi
 else
+  as_fn_error $? "postlink test failed: $e1 or $e2 compile test failed" "$LINENO" 5
   ac_cv_postlink=yes;
 fi
 rm -rf $ac_clean_files

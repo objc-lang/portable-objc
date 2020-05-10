@@ -27,10 +27,9 @@ The license file explains the difference between,
 LATEST VERSION
 --------------
 
-The latest bootstrap compilers and sources of the Portable Object Compiler
-are available at:
+The latest sources of the Portable Object Compiler are available at:
 
-	http://sunsite.unc.edu/pub/Linux/devel/lang/objc
+	https://sourceforge.net/projects/objc/
 
 Or from my home page at:
 
@@ -42,6 +41,7 @@ WHAT'S INCLUDED
 The "objc" distribution consists of the following parts :
 
 	0. "VICI", interactive Objective-C debugger and interpreter
+	It doesn't currently work but may be an interesting project for someone.
 
 	1. "objc", the actual compiler
 
@@ -125,7 +125,7 @@ NICE FEATURES
 	to specify a default handler to be executed.
 
 	10.Supports dynamically loading Objective-C modules on Windows,
-	FreeBSD, HP-UX, Linux, IRIX, Digital Unix etc.
+	FreeBSD, HP-UX, Solaris, Linux, IRIX, Digital Unix etc.
 
 	11.Has a switch for double indirection for Object identifiers (id as
 	a handle instead of a pointer). (-become: method)

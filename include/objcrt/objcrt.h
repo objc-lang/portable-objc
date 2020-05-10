@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
- * $Id: objcrt.h,v 1.12 2020/04/18 17:50:47 stes Exp $
+ * $Id: objcrt.h,v 1.13 2020/05/10 11:48:42 stes Exp $
  */
 
 /*
@@ -98,7 +98,6 @@ extern BOOL noNilRcvr;		/* do not allow msg. to nil */
 SEL EXPORT selUid (STR);
 STR EXPORT selName (SEL);
 void EXPORT dbg (char *fmt,...);
-void EXPORT prnstack (FILE * file);
 void EXPORT loadobjc (void *modPtr);
 void EXPORT unloadobjc (void *modPtr);
 

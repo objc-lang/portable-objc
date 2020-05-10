@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
- * $Id: objcrt.m,v 1.13 2020/04/18 17:50:55 stes Exp $
+ * $Id: objcrt.m,v 1.14 2020/05/10 11:48:45 stes Exp $
  */
 
 /*
@@ -494,114 +494,26 @@ id (*_realloc) (id, unsigned int);	/* clash IRIX 6.2 and not used */
 
 /*****************************************************************************
  *
- * Stack Tracing
- *
- * This is platform dependent code that is nice to have (when possible), but
- * it is not essential ...  It is just to print a trace when a -error: message
- * is sent.
- *
- * The default handler (if no platform specific code is available) simply
- * prints a message that says to use a debugger to see the trace.
- *
- ****************************************************************************/
-
-#if (defined(__LCC__) && defined(WIN32)) || ((i386 || m68k) && (__FreeBSD__ || linux || __NetBSD__ || __NeXT__ || __svr4__ ))
-
-/* stack frame layout (for messages) */
-
-typedef struct _msgframe
-  {
-    struct _msgframe *prev;	/* link to prev frame */
-      id (*ret) ();		/* return address from subroutine */
-    struct _argframe
-      {
-	id receiver;		/* id of receiver */
-	SEL cmd;		/* message selector */
-	int arg;		/* first message argument */
-      }
-    argfrm;
-  }
- *msgframe;
-
-/* code to avoid most obvious false selectors */
-#ifdef m68k
-#define ispointer(addr) (((unsigned)addr&0x1)==0)
-#else
-#define ispointer(addr) (addr != NULL)
-#endif
-
-#define instack(addr) (((unsigned)(addr) & 0xfff00000) != 0)
-#define isstackframe(fp) (ispointer(fp) && instack(fp) && (fp) < (fp)->prev)
-#define firstargpos ((unsigned)&(((msgframe)0)->argfrm.receiver))
-#define getframe(firstArg) ((msgframe)((unsigned)&firstArg - firstargpos))
-
-#define PRINT_STACK_BACKTRACE 1
-#endif
-
-#if 0 && defined(sparc)
-
-/* stack frame layout (for messages) */
-
-typedef struct _msgframe
-  {
-    unsigned l0, l1, l2, l3, l4, l5, l6, l7;
-    unsigned i0, i1, i2, i3, i4, i5;
-    struct _msgframe *prev;	/* i6 = link to prev frame */
-    unsigned i7;
-    char *hidden;
-    struct _argframe
-      {
-	id receiver;		/* id of receiver */
-	SEL cmd;		/* message selector */
-	unsigned o2, o3, o4, o5, o6, o7;
-      }
-    argfrm;
-  }
- *msgframe;
-
-#define ispointer(addr) (((unsigned)addr&0x1)==0)
-#define instack(addr) (((unsigned)(addr) & 0xfff00000) != 0)
-#define isstackframe(fp) (ispointer(fp) && instack(fp) && (fp) < (fp)->prev)
-#define firstargpos ((unsigned)&(((msgframe)0)->argfrm.receiver))
-#define getframe(firstArg) ((msgframe)((unsigned)&firstArg - firstargpos))
-
-#define PRINT_STACK_BACKTRACE 1
-#endif
-
-#define PRNSTKMAX 100
-
-void EXPORT 
-prnstack (FILE * firstArg)
-{
-#ifndef PRINT_STACK_BACKTRACE
-  fprintf (firstArg, "(Use a debugger to see a stack backtrace).\n");
-  fflush (firstArg);
-#else
-  FILE *stream = firstArg;
-  msgframe pf, f = getframe (firstArg);
-  int nsels = 0;
-  SEL sels [PRNSTKMAX];
-
-  fprintf (stream, "Message backtrace:\n");
-
-  for (pf = f->prev; isstackframe (pf) && nsels < PRNSTKMAX; f = pf, pf = pf->prev)
-    {
-      SEL s = f->argfrm.cmd;
-      if (ispointer (s) && selUid (s) != NULL)
-	sels [nsels++] = s;
-    }
-
-  while (nsels--)
-    fprintf (stream, " %.80s\n", sels [nsels]);
-#endif
-}
-
-/*****************************************************************************
- *
  * Error Handler
  *
  * Especially useful to be declared as a 'function vector' so that the handler
  * can be replaced at runtime by something else.
+ *
+ * We used to have some (optional) platform dependent code in some 32bit cases
+ * (ABI-dependent) ...  just to print a trace on a -error: message 
+ *
+ * The default handler (if no platform specific code was available) was simply
+ * to print a message that said to use a debugger to see the trace.
+ *
+ * We now (3.3.19) do this on all platforms to avoid this non-portable code.
+ * (which was #ifdef'ed out in any case and was not used).
+ *
+ * The debugger can set a breakpoint like:
+ *
+ * 	'stop in i_Object_error_'  and then issue 'where'
+ *      'br i_Object_error_' and then issue 'bt'
+ *
+ * The debugger is best fit to then display a trace (bt or where etc.).
  *
  ****************************************************************************/
 
@@ -609,10 +521,10 @@ static id
 reportv (id self, STR fmt, OC_VA_LIST ap)
 {
   fflush (stderr);
-  prnstack (stderr);
   fprintf (stderr, "error: ");
   vfprintf (stderr, fmt, ap);
   fprintf (stderr, "\n");
+  fprintf (stderr, "(Use a debugger to see a message backtrace).\n");
   abort ();
 #ifdef OBJCRT_RETURN_AFTER_ABORT
   return self;
