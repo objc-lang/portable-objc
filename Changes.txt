@@ -1,5 +1,22 @@
 
-3.3.19  * cleanup the printstack code in error:
+3.3.20  * update pkg/prototype for SVR4 Solaris 10 package
+
+	* update pkg/pkginfo for SVR4 Solaris 10 package
+
+	* change top Makefile.in to use simple 'cp' instead of 'install'
+	  because it copies multiple files into a destination directory
+	  the individual src/*/Makefile's continue to use 'install'
+	  the src/objc/Makefile is issuing 'install' for each file it installs
+
+	* Sun C specific add -fast option for maximum runtime performance
+	  an option of the Sun C compiler to compile with -xregs=frameptr
+	  and use the frame pointer as a general purpose register (x64 ABI)
+
+	  to compile POC with -fast : ./configure EXTRA_MFLAGS=-fast
+
+	  this suppress the framepointer so incompatible with some tools
+
+3.3.19  * cleanup the printstack code in doesNotRecognize:/doesNotUnderstand:
 
 	* set AC_CONFIG_SRCDIR(block98.html) in configure for autoconf 2.68
 

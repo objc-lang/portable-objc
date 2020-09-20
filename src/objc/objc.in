@@ -2,7 +2,7 @@
 # Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
 # Driver Script (@NAME@)
 #
-# $Id: objc.in,v 1.17 2020/04/18 19:23:51 stes Exp $
+# $Id: objc.in,v 1.18 2020/09/20 13:10:17 stes Exp $
 #
 # @WARNING@
 
@@ -121,6 +121,7 @@ do
 		     ;;
     -c|-Fo)          link=n ;;
     -O)              ccargs="$ccargs $arg" ;;
+    -fast)           ccargs="$ccargs $arg" ;; # Sun cc max runtime performance
     -C|-Fi|-Fii)     comments=y ; link=n ; compile=n ; retain=y ;;
     -dl)             linkdl=y;postlink=y;;
     -prod)           ccargs="$ccargs -prod";;

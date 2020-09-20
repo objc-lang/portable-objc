@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1996-2019. All Rights Reserved.
-# $Id: Makefile.in,v 1.20 2019/10/14 18:16:28 stes Exp $
+# $Id: Makefile.in,v 1.21 2020/09/20 13:10:05 stes Exp $
 #
 
 CD=cd
@@ -11,7 +11,7 @@ MKDIR=mkdir
 INSTALLDIR=@INSTALLDIR@
 LIBROOTDIR=@LIBROOTDIR@
 DATAROOTDIR=@DATAROOTDIR@
-INSTALL=@INSTALL@
+CP=@CP@
 HDRDIR=@HDRDIR@
 MANDIR=@MANDIR@
 
@@ -115,12 +115,12 @@ install : compiler cakit
 	-$(CD) src; $(CD) objpak; $(MAKE) install
 	-$(CD) src; $(CD) objc;   $(MAKE) install
 	-$(CD) src; $(CD) cakit;  $(MAKE) install
-	-$(CD) man; $(CD) man1; $(INSTALL) $(MAN1PAGES) $(MANDIR)/man1
-	-$(CD) man; $(CD) man3; $(INSTALL) $(MAN3PAGES) $(MANDIR)/man3
-	-$(CD) include; $(CD) ppi; $(INSTALL) $(PPIHDRS) $(HDRDIR)/ppi
-	-$(CD) include; $(CD) objcrt; $(INSTALL) $(OBJCRTHDRS) $(HDRDIR)/objcrt
-	-$(CD) include; $(CD) objpak; $(INSTALL) $(OBJPAKHDRS) $(HDRDIR)/objpak
-	-$(CD) include; $(CD) cakit; $(INSTALL) $(CAKITHDRS) $(HDRDIR)/cakit
+	-$(CD) man; $(CD) man1; $(CP) $(MAN1PAGES) $(MANDIR)/man1
+	-$(CD) man; $(CD) man3; $(CP) $(MAN3PAGES) $(MANDIR)/man3
+	-$(CD) include; $(CD) ppi; $(CP) $(PPIHDRS) $(HDRDIR)/ppi
+	-$(CD) include; $(CD) objcrt; $(CP) $(OBJCRTHDRS) $(HDRDIR)/objcrt
+	-$(CD) include; $(CD) objpak; $(CP) $(OBJPAKHDRS) $(HDRDIR)/objpak
+	-$(CD) include; $(CD) cakit; $(CP) $(CAKITHDRS) $(HDRDIR)/cakit
 
 cleantmp :
 	-$(CD) src; $(CD) objcrt; $(MAKE) cleantmp

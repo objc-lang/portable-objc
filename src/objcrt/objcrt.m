@@ -1,7 +1,7 @@
 
 /*
  * Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
- * $Id: objcrt.m,v 1.14 2020/05/10 11:48:45 stes Exp $
+ * $Id: objcrt.m,v 1.16 2020/05/11 07:14:02 stes Exp $
  */
 
 /*
@@ -500,7 +500,7 @@ id (*_realloc) (id, unsigned int);	/* clash IRIX 6.2 and not used */
  * can be replaced at runtime by something else.
  *
  * We used to have some (optional) platform dependent code in some 32bit cases
- * (ABI-dependent) ...  just to print a trace on a -error: message 
+ * (ABI-dependent) ...  just to print a trace on a -doesNotUnderstand: message 
  *
  * The default handler (if no platform specific code was available) was simply
  * to print a message that said to use a debugger to see the trace.
@@ -510,8 +510,8 @@ id (*_realloc) (id, unsigned int);	/* clash IRIX 6.2 and not used */
  *
  * The debugger can set a breakpoint like:
  *
- * 	'stop in i_Object_error_'  and then issue 'where'
- *      'br i_Object_error_' and then issue 'bt'
+ * 	'stop in i_Object_doesNotRecognize_'  and then issue 'where'
+ *      'br i_Object_doesNotRecognize_' and then issue 'bt'
  *
  * The debugger is best fit to then display a trace (bt or where etc.).
  *
@@ -525,6 +525,7 @@ reportv (id self, STR fmt, OC_VA_LIST ap)
   vfprintf (stderr, fmt, ap);
   fprintf (stderr, "\n");
   fprintf (stderr, "(Use a debugger to see a message backtrace).\n");
+  fflush (stderr);
   abort ();
 #ifdef OBJCRT_RETURN_AFTER_ABORT
   return self;
