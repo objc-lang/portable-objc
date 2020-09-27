@@ -1,11 +1,16 @@
 
-/* Portable Object Compiler (c) 1997,98.  All Rights Reserved.
+/* Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
  *
  * DO NOT EDIT -- configure objc-2.4.1 i586-watcom-win32
  */
 
 #ifndef OBJCRT_CONFIG_H
 #define OBJCRT_CONFIG_H
+
+/* configure defined version */
+
+#define OBJCVERSION "3.3.21"
+#define OBJC1VERSION "objc3.3.21"
 
 /* On some machines, the names _alloc, _error etc. are defined in a
  * system library.  Avoid name clash by using the following macros

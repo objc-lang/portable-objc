@@ -12,7 +12,6 @@
 /config.ppc/1.1.1.1/Sun May 10 12:00:04 2020//
 /config.sub/1.7/Sun May 10 12:00:04 2020//
 /config.vac/1.1.1.1/Sun May 10 12:00:04 2020//
-/config.wmk/1.1.1.1/Sun May 10 12:00:04 2020//
 /ctype.h/1.2/Sun May 10 12:00:04 2020//
 /errno.h/1.1/Sun May 10 12:00:04 2020//
 /install-sh/1.2/Sun May 10 12:00:04 2020//
@@ -24,4 +23,5 @@
 /stdlib.h/1.2/Sun May 10 12:00:04 2020//
 /string.h/1.2/Sun May 10 12:00:04 2020//
 /unistd.h/1.1/Sun May 10 12:00:04 2020//
+/config.wmk/1.2/Sun Sep 27 12:01:43 2020//
 D

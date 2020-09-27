@@ -1,4 +1,9 @@
 
+3.3.21  * update util/config.h for WATCOM on Microsoft Windows10 Pro 64bit
+	  (thanks to Dmitry Kirichenko for reporting this)
+
+	* update 
+
 3.3.20  * update pkg/prototype for SVR4 Solaris 10 package
 
 	* update pkg/pkginfo for SVR4 Solaris 10 package

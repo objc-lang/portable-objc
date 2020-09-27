@@ -1,8 +1,8 @@
 
 /*
- * Portable Object Compiler (c) 1997-2019.  All Rights Reserved.
+ * Portable Object Compiler (c) 1997-2020.  All Rights Reserved.
  *
- * $Id: objc.m.in,v 1.7 2019/03/14 14:13:16 stes Exp $
+ * $Id: objc.m.in,v 1.8 2020/09/27 12:10:57 stes Exp $
  *
  * @WARNING@
  */
