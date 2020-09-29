@@ -8,7 +8,6 @@
 /assert.h/1.2/Sun May 10 12:00:04 2020//
 /config.guess/1.6/Sun May 10 12:00:04 2020//
 /config.lcc/1.1.1.1/Sun May 10 12:00:04 2020//
-/config.nmk/1.1.1.1/Sun May 10 12:00:04 2020//
 /config.ppc/1.1.1.1/Sun May 10 12:00:04 2020//
 /config.sub/1.7/Sun May 10 12:00:04 2020//
 /config.vac/1.1.1.1/Sun May 10 12:00:04 2020//
@@ -24,4 +23,5 @@
 /string.h/1.2/Sun May 10 12:00:04 2020//
 /unistd.h/1.1/Sun May 10 12:00:04 2020//
 /config.wmk/1.2/Sun Sep 27 12:01:43 2020//
+/config.nmk/1.2/Tue Sep 29 15:56:57 2020//
 D

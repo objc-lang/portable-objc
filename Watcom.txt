@@ -1,8 +1,8 @@
-Portable Object Compiler (c) 1997,98,2002.  All Rights Reserved.
+Portable Object Compiler (c) 1997,98,2002,2020.  All Rights Reserved.
 
 This file contains some notes that are specific to running "objc"
-(pronounced as "Object Compiler") on Windows95 or WindowsNT using
-the Sybase WATCOM compiler.
+(pronounced as "Object Compiler") on Windows95, WindowsNT, Windows 98,
+Windows XP, Windows 7 or Windows 10 using the Sybase WATCOM compiler.
 
 AUTOEXEC.BAT
 ------------
@@ -78,6 +78,6 @@ Garbage Collection
 Binary Driver
 -------------
 
-	There's no Bourne shell compiler driver for Windows95.  Only
+	There's no Bourne shell compiler driver for Windows.  Only
 	the binary, compiled, version is available (as "objc.exe").
 

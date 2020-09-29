@@ -1,9 +1,9 @@
-Portable Object Compiler (c) 1997,98,2002.  All Rights Reserved.
+Portable Object Compiler (c) 1997,98,2002,2020.  All Rights Reserved.
 
 
 This file contains some notes that are specific to running "objc"
-(pronounced as "Object Compiler") on Windows95 or WindowsNT using
-the Microsoft Visual C (cl.exe) compiler.
+(pronounced as "Object Compiler") on Windows95, WindowsNT, Windows XP,
+Windows 7 and Windows 10 using the Microsoft Visual C++ (cl.exe) compiler.
 
 General
 -------
@@ -19,6 +19,8 @@ AUTOEXEC.BAT
 	the compiler driver, and OBJC1.EXE, the compiler proper.  It's
 	also assumed that the compiler tools (nmake,link,cl etc.) are in 
 	the PATH.
+
+	Check the Microsoft env.variables LIB and INCLUDE to find header files.
 	
 	It's also convenient to "set OBJCOPT=options" in this file, where
 	options can be "-q" for example.
@@ -60,7 +62,7 @@ BISON & FLEX
 Binary Driver
 -------------
 
-	There's no Bourne shell compiler driver for Windows95.  Only
+	There's no Bourne shell compiler driver for Windows.  Only
 	the binary, compiled, version is available (as "objc.exe").
 
 Using the MSVC Project Manager
