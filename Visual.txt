@@ -1,4 +1,4 @@
-Portable Object Compiler (c) 1997,98,2002,2020.  All Rights Reserved.
+Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
 
 
 This file contains some notes that are specific to running "objc"
@@ -21,6 +21,12 @@ AUTOEXEC.BAT
 	the PATH.
 
 	Check the Microsoft env.variables LIB and INCLUDE to find header files.
+
+	For example,
+
+	PATH=c:\tools\bin;c:\objc\bin;C:\visualc\VC98\Bin;C:\visualc\Common\MSDev98\Bin;c:\visualc\VC98\Lib;%PATH%
+	set INCLUDE=C:\visualc\VC98\Include
+	set LIB=C:\visualc\VC98\Lib
 	
 	It's also convenient to "set OBJCOPT=options" in this file, where
 	options can be "-q" for example.

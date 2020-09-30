@@ -1,4 +1,4 @@
-Portable Object Compiler (c) 1997,98,2002,2020.  All Rights Reserved.
+Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
 
 This file contains some notes that are specific to running "objc"
 (pronounced as "Object Compiler") on Windows95, WindowsNT, Windows 98,
@@ -11,6 +11,12 @@ AUTOEXEC.BAT
 	the compiler driver, and OBJC1.EXE, the compiler proper.  It's
 	also assumed that the WATCOM tools (WCC386,WLINK etc.) are in 
 	the PATH.
+
+	For example,
+
+	PATH=c:\tools\bin;c:\objc\bin;C:\WATCOM\BINNT;%PATH%
+	set INCLUDE=C:\WATCOM\H;C:\WATCOM\H\NT
+	set WATCOM=C:\WATCOM
 	
 	It's also convenient to "set OBJCOPT=options" in this file, where
 	options can be "-q" for example.
