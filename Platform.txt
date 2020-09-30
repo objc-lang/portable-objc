@@ -103,4 +103,5 @@ ubuntu 18 gcc 7.3
 SUSE sles15 gcc 7.1
 fedora 29 gcc 8.2.1 flex 2.6.1 
 openindiana hipster gcc9.2
+x86_64-unknown-linux-gnu alpinelinux 3.9.6 gcc8.3
 
