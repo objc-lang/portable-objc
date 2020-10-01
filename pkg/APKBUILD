@@ -1,0 +1,48 @@
+# Contributor: David Stes <stes@telenet.be>
+# Maintainer: David Stes <stes@telenet.be>
+pkgname=objc
+pkgver=3.3.20
+pkgrel=1
+pkgdesc="Portable Object Compiler"
+url="http://users.telenet.be/stes/compiler.html"
+arch="all"
+license="LGPL-2.0-or-later"
+depends="musl "
+makedepends="objc flex byacc"
+install=""
+subpackages=""
+source="http://users.telenet.be/stes/$pkgname-$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+
+# normally they want to make DESTDIR="$pkgdir" install
+# but we --prefix to $pkgdir and set OBJDIR to /usr
+# Portable Object Compiler supports OBJCDIR since always
+
+# the config.sub of automake-111 does not know alpinelinux
+#		--build=$CBUILD \
+#		--host=$CHOST \
+
+# the configure script will set LIB64NAME=lib64 but AlpineLinux uses lib
+
+# normally install in /usr but currently / to avoid postcheck manpages
+
+# currently use make -j1 to disable parallelism
+# objcrt,objpak,oclib,objc must be built in that order
+
+build() {
+	cd "$builddir"
+	./configure OBJCDIR=/ LIB64NAME=lib --prefix="$pkgdir"
+	make -j1 compiler
+}
+
+check() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+	mkdir -p "$pkgdir"
+	make -j1 install
+}
+
+sha512sums="5637762d1ea637ce5e2460ebef7527baf40445ec801f95808655ddd0bbdfb6b935187c1023d2d100b741948905f539e783a8c174e068997a2629c99692b551d9  objc-3.3.20.tar.gz"

@@ -3,6 +3,16 @@ For Slackware
 
 	./objc.SlackBuild
 
+For AlpineLinux
+
+	mkdir objc
+	cp APKBUILD objc/	
+	cd objc
+	abuild -d 
+
+	the -d flag is currently to avoid their fat build-base
+	which includes g++ (that is not minimalistic)
+
 For Solaris IPS (Image Package System for Solaris 11)
 	
 	pkgrepo create myrepo
