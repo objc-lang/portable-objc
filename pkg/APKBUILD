@@ -1,7 +1,7 @@
 # Contributor: David Stes <stes@telenet.be>
 # Maintainer: David Stes <stes@telenet.be>
 pkgname=objc
-pkgver=3.3.20
+pkgver=3.3.21
 pkgrel=1
 pkgdesc="Portable Object Compiler"
 url="http://users.telenet.be/stes/compiler.html"
@@ -10,7 +10,7 @@ license="LGPL-2.0-or-later"
 depends="musl "
 makedepends="objc flex byacc"
 install=""
-subpackages=""
+subpackages="$pkgname-doc"
 source="http://users.telenet.be/stes/$pkgname-$pkgver.tar.gz"
 builddir="$srcdir/$pkgname-$pkgver"
 
@@ -24,14 +24,12 @@ builddir="$srcdir/$pkgname-$pkgver"
 
 # the configure script will set LIB64NAME=lib64 but AlpineLinux uses lib
 
-# normally install in /usr but currently / to avoid postcheck manpages
-
 # currently use make -j1 to disable parallelism
 # objcrt,objpak,oclib,objc must be built in that order
 
 build() {
 	cd "$builddir"
-	./configure OBJCDIR=/ LIB64NAME=lib --prefix="$pkgdir"
+	./configure OBJCDIR=/usr LIB64NAME=lib --prefix="$pkgdir/usr"
 	make -j1 compiler
 }
 
@@ -42,7 +40,18 @@ check() {
 package() {
 	cd "$builddir"
 	mkdir -p "$pkgdir"
-	make -j1 install
+# a full install also installs manpages which alpinelinux wants in -doc pkg
+	make -j1 installcompiler
+	make -j1 installinclude
 }
 
-sha512sums="5637762d1ea637ce5e2460ebef7527baf40445ec801f95808655ddd0bbdfb6b935187c1023d2d100b741948905f539e783a8c174e068997a2629c99692b551d9  objc-3.3.20.tar.gz"
+doc() {
+	cd "$builddir"
+	mkdir -p "$subpkgdir/usr"
+	./configure OBJCDIR=/usr LIB64NAME=lib --prefix="$subpkgdir/usr"
+#	make INSTALLDIR="$subpkgdir/usr" -j1 installman
+	make -j1 installman
+	find $subpkgdir/usr -type f -exec gzip {} \;
+}
+
+sha512sums="06fa4685bc181b5a303c0fe5fdf6e626b9996a2ecafcf48875cf8e0adf3662c24873c47e07dad8a0d1fdd082f3745bcc7d50397832a631dc60765ca7e4668813  objc-3.3.21.tar.gz"

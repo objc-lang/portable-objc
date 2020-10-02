@@ -80,9 +80,6 @@ t                # target dependent TDF capsule
 o (obj)          # object file
 a (lib)          # library (archive)
 ta               # TDF archive
-mm               # Objective-C++ source file
-cc               # C++ source file
-ii               # preprocessed C++ source file
 
 Environment:
 TMPDIR           # temporary files
