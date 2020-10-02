@@ -1,7 +1,7 @@
 
 #
-# Portable Object Compiler (c) 1996-2019. All Rights Reserved.
-# $Id: Makefile.in,v 1.21 2020/09/20 13:10:05 stes Exp $
+# Portable Object Compiler (c) 1996-2020. All Rights Reserved.
+# $Id: Makefile.in,v 1.22 2020/10/02 06:59:30 stes Exp $
 #
 
 CD=cd
@@ -99,28 +99,42 @@ installruntime ::
 	-$(CD) src; $(CD) objc; $(MAKE) installruntime
 	-$(CD) src; $(CD) cakit; $(MAKE) install
 
-install : compiler cakit
+#installman only installs manpages (for objc-doc.apk package)
+
+installman ::
 	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
-	test -d $(LIBROOTDIR) || $(MKDIR) $(LIBROOTDIR)
 	test -d $(DATAROOTDIR) || $(MKDIR) $(DATAROOTDIR)
 	test -d $(MANDIR) || $(MKDIR) $(MANDIR)
 	test -d $(MANDIR)/man1 || $(MKDIR) $(MANDIR)/man1
 	test -d $(MANDIR)/man3 || $(MKDIR) $(MANDIR)/man3
+	-$(CD) man; $(CD) man1; $(CP) $(MAN1PAGES) $(MANDIR)/man1
+	-$(CD) man; $(CD) man3; $(CP) $(MAN3PAGES) $(MANDIR)/man3
+
+installinclude ::
+	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
 	test -d $(HDRDIR) || $(MKDIR) $(HDRDIR)
 	test -d $(HDRDIR)/ppi    || $(MKDIR) $(HDRDIR)/ppi
 	test -d $(HDRDIR)/objcrt || $(MKDIR) $(HDRDIR)/objcrt
 	test -d $(HDRDIR)/objpak || $(MKDIR) $(HDRDIR)/objpak
 	test -d $(HDRDIR)/cakit  || $(MKDIR) $(HDRDIR)/cakit
-	-$(CD) src; $(CD) objcrt; $(MAKE) install
-	-$(CD) src; $(CD) objpak; $(MAKE) install
-	-$(CD) src; $(CD) objc;   $(MAKE) install
-	-$(CD) src; $(CD) cakit;  $(MAKE) install
-	-$(CD) man; $(CD) man1; $(CP) $(MAN1PAGES) $(MANDIR)/man1
-	-$(CD) man; $(CD) man3; $(CP) $(MAN3PAGES) $(MANDIR)/man3
 	-$(CD) include; $(CD) ppi; $(CP) $(PPIHDRS) $(HDRDIR)/ppi
 	-$(CD) include; $(CD) objcrt; $(CP) $(OBJCRTHDRS) $(HDRDIR)/objcrt
 	-$(CD) include; $(CD) objpak; $(CP) $(OBJPAKHDRS) $(HDRDIR)/objpak
 	-$(CD) include; $(CD) cakit; $(CP) $(CAKITHDRS) $(HDRDIR)/cakit
+
+installcakit : cakit
+	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
+	test -d $(LIBROOTDIR) || $(MKDIR) $(LIBROOTDIR)
+	-$(CD) src; $(CD) cakit;  $(MAKE) install
+
+installcompiler : compiler 
+	test -d $(INSTALLDIR) || $(MKDIR) $(INSTALLDIR)
+	test -d $(LIBROOTDIR) || $(MKDIR) $(LIBROOTDIR)
+	-$(CD) src; $(CD) objcrt; $(MAKE) install
+	-$(CD) src; $(CD) objpak; $(MAKE) install
+	-$(CD) src; $(CD) objc;   $(MAKE) install
+
+install : installcompiler installcakit installinclude installman
 
 cleantmp :
 	-$(CD) src; $(CD) objcrt; $(MAKE) cleantmp

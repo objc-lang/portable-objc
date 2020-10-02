@@ -2,7 +2,7 @@
 # Portable Object Compiler (c) 1997,2020.  All Rights Reserved.
 # Driver Script (@NAME@)
 #
-# $Id: objc.in,v 1.18 2020/09/20 13:10:17 stes Exp $
+# $Id: objc.in,v 1.19 2020/10/02 06:59:34 stes Exp $
 #
 # @WARNING@
 
@@ -26,10 +26,8 @@ gcprefix=@GCPREFIX@
 
 cc=${CC-"@CC@"}
 ld=${LD-"ld"}
-cxx=${CCPLUS-"@CCPLUS@"}
 cpp=${CPP-"@CPP@"}
 cppwantsdotc=@CPPWANTSDOTC@
-cxxpp="$cxx -E"
 cpargs="@OC_CPARGS@"
 ocargs="@OC_OCARGS@"
 ccargs="@OC_CCARGS@"
@@ -46,7 +44,6 @@ cppimportflag="@CPPIMPORTFLAG@"
 picocargs="@PICOCARGS@"
 linkformat="@LINKFORMAT@"
 nm="@NM@"
-ii="@IISUFFIX@"
 sqlext="@SQLEXT@"
 sqlcc="@SQLCC@"
 sqllibs="@SQLLIBS@"
@@ -80,7 +77,6 @@ profile=n
 xstr=xstr
 runxstr=@RUNXSTR@
 useoutput=n
-cplusplus=n
 postlink=@POSTLINK@
 initcall=@INITCALL@
 pager=${MANPAGER-more}
@@ -135,9 +131,8 @@ do
                      retain=y ; ocargs="$ocargs -objc" ;;
     -export)         ocargs="$ocargs $arg";shift;ocargs="$ocargs $1";;
     -dllexport)      ocargs="$ocargs $arg";;
-    -ObjC|-objc)     actionc="m";actioncc="mm" ;;
+    -ObjC|-objc)     actionc="m";;
     -ObjCpp|-import) cpargs="$cpargs $cppimportflag";; 
-    -cplus)    	     cplusplus=y;postlink=1;;
     -dollars)        ccargs="$ccargs $ccdollarflag";;
     -E)              link=n;precompile=n;;
     -i)              stopflag="-i";link=n;; # tcc
@@ -275,9 +270,6 @@ do
     *.em)            inputs="$inputs $arg" ;
                      extensions="$extensions em" ;
                      actions="$actions em" ;;
-    *.mm)            inputs="$inputs $arg" ; cplusplus=y;postlink=1 ;
-                     extensions="$extensions mm" ;
-                     actions="$actions mm" ;;
     *.i)             inputs="$inputs $arg" ;
                      extensions="$extensions i" ;
                      actions="$actions $actionc" ;;
@@ -285,18 +277,6 @@ do
                      extensions="$extensions c" ;
 		     # .c files can compile as 'm' using -ObjC
                      actions="$actions $actionc" ;;
-    *.cc)            inputs="$inputs $arg" ; cplusplus=y ;postlink=1;
-                     extensions="$extensions cc" ;
-                     actions="$actions $actioncc" ;;
-    *.cpp)           inputs="$inputs $arg" ; cplusplus=y ;postlink=1;
-                     extensions="$extensions cpp" ;
-                     actions="$actions $actioncc" ;;
-    *.cxx)           inputs="$inputs $arg" ; cplusplus=y ;postlink=1;
-                     extensions="$extensions cxx" ;
-                     actions="$actions $actioncc" ;;
-    *.C)             inputs="$inputs $arg" ; cplusplus=y ;postlink=1;
-                     extensions="$extensions C" ;
-                     actions="$actions $actioncc" ;;
     *.s)             inputs="$inputs $arg" ;
                      extensions="$extensions s" ;
                      actions="$actions s" ;;
@@ -348,14 +328,12 @@ bindir="$objcdir/bin"
 libdir="$objcdir/$libdirname"
 hdrdir="$objcdir/include"
 objc1=$bindir/objc1
-objcplus1=$bindir/objc1
 
 case $verbose in
   y)  set -x ;;
 esac
 
 objfiles=""
-if [ $cplusplus = y ]; then ocargs="$ocargs -noFwd -cplus "; fi
 if [ $postlink = 1 ]; then 
     ocargs="$ocargs -postlink "; 
     ldargs="$ldargs $plldargs";
@@ -389,10 +367,9 @@ exits()
    exit $status
 }
 
-case $cplusplus in
-	y) thecc="$cxx";thecpp="$cxxpp";occ1="$objcplus1";;
-	*) thecc="$cc";thecpp="$cpp";occ1="$objc1";;
-esac
+thecc="$cc"
+thecpp="$cpp"
+occ1="$objc1"
 
 for input in $inputs
  do
@@ -413,7 +390,7 @@ for input in $inputs
     if [ $useoutput = y -a $link = n ]; then useoflag="y";ofile="$output"; fi;
 
     case $action in
-      m|mm)
+      m)
         junk="";
 	
 	tmpp="$t$base.P"
@@ -422,11 +399,8 @@ for input in $inputs
 	# on platforms like Digital UNIX (cc -E /tmp/foo.c)
 	# because this changes the include path
 
-	case $cplusplus in
-		n) tmpi="$t$base.i";tmpc="$base.c";;
-		# .ii doesn't work with cfront, but does for gcc
-		y) tmpi="$t$base.$ii";tmpc="$base.cc";;
-	esac
+	tmpi="$t$base.i"
+	tmpc="$base.c"
 	
 	if [ $retain = n ]; then junk="$junk $tmpi"; fi
 	if [ $retaincpp = n ]; then junk="$junk $tmpp"; fi

@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-2.x.x configure script
-dnl $Id: configure.in,v 1.80 2020/09/27 12:10:51 stes Exp $
+dnl $Id: configure.in,v 1.81 2020/10/02 06:59:30 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -40,15 +40,6 @@ AC_ARG_WITH(longlinetags,
 AC_ARG_WITH(shortlinetags,
   [  --with-shortlinetags         generate short # linetags],
   [ac_cv_longlinetags=$withval]
-)
-
-dnl the cplus stuff is not terribly important, allow to disable it
-dnl (it works with a couple of compilers, such as g++, mwcc -cplus, SGI CC)
-
-AC_ARG_WITH(cplus,
-  [  --with-cplus                 find a c++ compiler (to make -cplus work)],
-  [ac_cv_cplus=$withval],
-  [ac_cv_cplus=no]
 )
 
 dnl for embedded SQL in Objective-C we could support several servers
@@ -236,17 +227,6 @@ rm -f foo.m
    ;;
 esac
 
-case $ac_cv_cplus in
-yes)
-AC_PROG_CXX
-;;
-no)
-;;
-esac
-
-
-CCPLUS=$CXX;AC_SUBST(CCPLUS)
-IISUFFIX=cc;AC_SUBST(IISUFFIX)
 CCMINUSDFLAG='-D';AC_SUBST(CCMINUSDFLAG)
 CCMINUSIFLAG='-I';AC_SUBST(CCMINUSIFLAG)
 CCMINUSCFLAG='-c ';AC_SUBST(CCMINUSCFLAG)
