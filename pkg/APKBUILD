@@ -1,7 +1,7 @@
 # Contributor: David Stes <stes@telenet.be>
 # Maintainer: David Stes <stes@telenet.be>
 pkgname=objc
-pkgver=3.3.21
+pkgver=3.3.22
 pkgrel=1
 pkgdesc="Portable Object Compiler"
 url="http://users.telenet.be/stes/compiler.html"
@@ -54,4 +54,4 @@ doc() {
 	find $subpkgdir/usr -type f -exec gzip {} \;
 }
 
-sha512sums="06fa4685bc181b5a303c0fe5fdf6e626b9996a2ecafcf48875cf8e0adf3662c24873c47e07dad8a0d1fdd082f3745bcc7d50397832a631dc60765ca7e4668813  objc-3.3.21.tar.gz"
+sha512sums="73312d0b08e445da33c003cc4647b81034e2006268d27a89c3cb981bbd63089f5462a4417e2ca4cb5f669910a0534d49e5181cc07a015a177094b392ff708f4b  objc-3.3.22.tar.gz"
