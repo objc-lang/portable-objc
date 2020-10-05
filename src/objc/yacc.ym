@@ -1,6 +1,6 @@
 
 /*
- * Copyright (c) 1997,98,99,2000,2001,2002,2011,2014,2019 David Stes.
+ * Copyright (c) 1997,98,99,2000,2001,2002,2011,2014,2019,2020 David Stes.
  *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Library General Public License as published 
@@ -16,7 +16,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  *
- * $Id: yacc.ym,v 1.19 2019/03/03 19:36:27 stes Exp $
+ * $Id: yacc.ym,v 1.20 2020/10/05 08:32:04 stes Exp $
  */
 
 %{
