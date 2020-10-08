@@ -3,6 +3,8 @@
 
 	* allow __typeof__ as equivalent to __typeof
 
+	* add pkg/objc.ebuild for build of XPAK Gentoo Linux package
+
 3.3.21  * update util/config.wmk for WATCOM on Microsoft Windows10 Pro 64bit
 	  (thanks to Dmitry Kirichenko for reporting this)
 
