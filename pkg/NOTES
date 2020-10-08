@@ -3,6 +3,17 @@ For Slackware
 
 	./objc.SlackBuild
 
+For Gentoo Linux
+	
+	#assuming /var/db/repos/localrepo is set up as 'local repository'
+	cp objc.ebuild /var/db/repos/localrepo/sys-devel/objc/objc-3.3.22.ebuild
+
+	#create a "Manifest"
+	ebuild ./objc-3.3.22.ebuild digest 
+
+	#make a package, clean, unpack, configure, compile, install, merge
+	ebuild ./objc-3.3.22.ebuild package
+	
 For AlpineLinux
 
 	mkdir objc
