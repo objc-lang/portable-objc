@@ -4122,7 +4122,10 @@ fi
 
    ;;
  *)
+   if  -z "$FINAL_AR"
+then
    FINAL_AR='echo'
+fi
 
    ;;
 esac

@@ -1,7 +1,7 @@
 
 #
 # Portable Object Compiler (c) 1996-2020. All Rights Reserved.
-# $Id: Makefile.in,v 1.22 2020/10/02 06:59:30 stes Exp $
+# $Id: Makefile.in,v 1.23 2020/10/09 12:49:32 stes Exp $
 #
 
 CD=cd
@@ -19,7 +19,7 @@ default ::
 	$(MAKE) compiler
 	$(MAKE) cakit
 
-compiler : objcrt objpak oclib objc
+compiler : objc
 
 runtimer : objcrtr objpakr cakitr
 
@@ -38,7 +38,7 @@ objpakr ::
 oclib ::
 	$(CD) src; $(CD) oclib;  $(MAKE)
 
-objc ::
+objc : objcrt objpak oclib
 	$(CD) src; $(CD) objc;   $(MAKE)
 
 cakit ::

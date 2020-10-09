@@ -1,6 +1,6 @@
 dnl
 dnl autoconf source file for objc-2.x.x configure script
-dnl $Id: configure.in,v 1.82 2020/10/05 08:32:02 stes Exp $
+dnl $Id: configure.in,v 1.83 2020/10/09 12:49:32 stes Exp $
 dnl
 dnl note: we're in the process of converting the old configure script
 dnl (configure.orig) to an autoconf script (long term project)
@@ -411,7 +411,10 @@ case $target in
    AC_CHECK_PROG(FINAL_AR,mwld,mwld -xml -o,:)
    ;;
  *)
+   if [ -z "$FINAL_AR" ]
+then
    FINAL_AR='echo'
+fi
    AC_SUBST(FINAL_AR)
    ;;
 esac
