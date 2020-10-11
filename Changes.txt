@@ -1,11 +1,11 @@
 
+3.3.23  * add pkg/objc.ebuild for build of XPAK Gentoo Linux package
+
+	* change top Makefile compiler target for gmake -j (multiple jobs)
+
 3.3.22	* update APKBUILD for separate objc and objc-doc packages
 
 	* allow __typeof__ as equivalent to __typeof
-
-	* add pkg/objc.ebuild for build of XPAK Gentoo Linux package
-
-	* change top Makefile compiler target for gmake -j (multiple jobs)
 
 3.3.21  * update util/config.wmk for WATCOM on Microsoft Windows10 Pro 64bit
 	  (thanks to Dmitry Kirichenko for reporting this)
