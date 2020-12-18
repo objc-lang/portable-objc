@@ -3,6 +3,8 @@
 
 	* change top Makefile compiler target for gmake -j (multiple jobs)
 
+	* add Fred Fish's name to Platforms.txt (AmigaOS support back in 1997)
+
 3.3.22	* update APKBUILD for separate objc and objc-doc packages
 
 	* allow __typeof__ as equivalent to __typeof
