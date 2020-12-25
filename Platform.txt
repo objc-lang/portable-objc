@@ -19,6 +19,7 @@ i586-djgpp-windows95 (gcc)
 i586-cygwin32-windows95 (gcc)
 
 m68k-unknown-amigaos (gcc) port by Fred Fish
+powerpc-unknown-amigaos (AmigaOS.net SDK 53.30)
 
 powerpc-mpw-system7 (MWCPPC)
 
